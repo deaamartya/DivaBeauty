@@ -18,4 +18,6 @@
     <string name="i_have_an_account">I Have An Account</string>
     <string name="riwayat_kesehatan">Riwayat Kesehatan</string>
     <string name="konfirmasi_password">Konfirmasi Password</string>
+    <string name="jadwalkan">Jadwalkan</string>
+    <string name="pemeriksaan_dengan_dokter">Pemeriksaan dengan Dokter</string>
 </resources>
