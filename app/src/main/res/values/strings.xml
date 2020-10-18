@@ -14,4 +14,8 @@
     <string name="email">Email</string>
     <string name="phone_number">Phone Number</string>
     <string name="identity_number_nik">Identity Number / NIK</string>
+    <string name="no_kk">No. KK</string>
+    <string name="i_have_an_account">I Have An Account</string>
+    <string name="riwayat_kesehatan">Riwayat Kesehatan</string>
+    <string name="konfirmasi_password">Konfirmasi Password</string>
 </resources>
