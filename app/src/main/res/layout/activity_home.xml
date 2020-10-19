@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="@string/pemeriksaan_dengan_dokter"
+                android:text="Konsultasi dengan Dokter"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textColor="@android:color/white"
                 />
