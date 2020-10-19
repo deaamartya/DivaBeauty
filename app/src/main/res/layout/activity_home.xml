@@ -100,7 +100,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pilihan Dokter"
+        android:text="@string/dokter_tersedia"
         android:id="@+id/text_pilihan_dokter"
         app:layout_constraintTop_toBottomOf="@id/card_pemeriksaan"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".DetailRiwayat"
+    tools:showIn="@layout/activity_detail_riwayat">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="ESTIMASI JAM KERJA"
+            android:fontFamily="@font/ttnorms_bold"
+            android:textColor="#dea5a4" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="13/10/2020 08:30"
+            android:fontFamily="@font/ttnorms_regular"
+            android:textColor="#000000"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="NOMOR ANTRIAN"
+            android:fontFamily="@font/ttnorms_bold"
+            android:textColor="#dea5a4"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:fontFamily="@font/ttnorms_regular"
+            android:textColor="#000000"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:clickable="true"
+            android:focusable="true"
+            android:checkable="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/card_atas"
+            app:cardBackgroundColor="#81d4fa"
+            android:id="@+id/card_pemeriksaan"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="Card Logo"
+                    app:srcCompat="@drawable/ic_baseline_settings_24"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="16dp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Nama Dokter"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textColor="@android:color/white"
+                        android:layout_gravity="center_vertical"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="PASIEN"
+            android:fontFamily="@font/ttnorms_bold"
+            android:textColor="#dea5a4" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nabilla Safira (20 tahun, Perempuan)"
+            android:fontFamily="@font/ttnorms_regular"
+            android:textColor="#000000"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="KELUHAN AWAL"
+            android:fontFamily="@font/ttnorms_bold"
+            android:textColor="#dea5a4"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Setelah menggunakan produk skincare yang baru saya beli. Saat pertama kali menggunakan saya merasa wajah saya panas dan sekarang muncul jerawat."
+            android:fontFamily="@font/ttnorms_regular"
+            android:textColor="#000000"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="FOTO"
+            android:fontFamily="@font/ttnorms_bold"
+            android:textColor="#dea5a4"/>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="CATATAN DARI DOKTER"
+            android:fontFamily="@font/ttnorms_bold"
+            android:textColor="#dea5a4"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sebelum konsultasi harap berhenti untuk menggunakan produk skincare terlebih dahulu ya dan gunakan pembersih muka yang gentle. Usahakan tidak menyentuh wajah untuk menghindari bakteri."
+            android:fontFamily="@font/ttnorms_regular"
+            android:textColor="#000000"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
