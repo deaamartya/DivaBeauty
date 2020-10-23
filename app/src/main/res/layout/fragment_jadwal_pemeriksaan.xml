@@ -3,21 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".Jadwal_KeluhanFotoFragment">
+    tools:context=".JadwalPemeriksaanFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Daftar Konsultasi"
-        />
-    <TextView
+        android:text="Pilihan Slot Jam"
+        android:fontFamily="@font/ttnorms_bold"
+        android:layout_marginBottom="8dp"/>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pada 13/10/2020 Jam 13:00 - 17.00"/>
+        app:singleSelection="true"
+        app:selectionRequired="true">
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08.00 - 12.00"
+            style="@style/Widget.MaterialComponents.Chip.Choice"/>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13.00 - 17.00"
+            android:checked="true"
+            app:checkedIcon="@drawable/ic_baseline_check_24"
+            app:checkedIconEnabled="true"
+            style="@style/Widget.MaterialComponents.Chip.Choice"/>
+    </com.google.android.material.chip.ChipGroup>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:checkable="true"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,46 +63,10 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_keluhan"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Keluhan Awal"
-        android:layout_marginTop="16dp">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:inputType="textMultiLine"
-            android:maxLines="10"
-            android:overScrollMode="always"
-            android:gravity="top"
-            android:padding="15dp"
-            android:scrollbarStyle="insideInset"
-            android:scrollbars="vertical"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Foto"
-        android:fontFamily="@font/ttnorms_bold"
-        android:layout_marginBottom="16dp"/>
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/foto_dokter"
-        />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Daftar"
+        android:text="Pilih"
         android:padding="12dp"
         android:layout_margin="16dp"/>
-
 </LinearLayout>
