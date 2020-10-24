@@ -120,4 +120,19 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="welcome">Welcome,</string>
+    <string name="nama_user">Dea Amartya</string>
+    <string name="konsultasi_dengan_dokter">Konsultasi dengan Dokter</string>
+    <string-array name="data_dokter">
+        <item>Ahmad Dahlan</item>
+        <item>Ahmad Yani</item>
+        <item>Sutomo</item>
+        <item>Gatot Soebroto</item>
+        <item>Ki Hadjar Dewantara</item>
+        <item>Mohammad Hatta</item>
+        <item>Soedirman</item>
+        <item>Soekarno</item>
+        <item>Soepomo</item>
+        <item>Tan Malaka</item>
+    </string-array>
 </resources>

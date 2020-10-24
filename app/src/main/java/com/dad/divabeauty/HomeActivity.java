@@ -9,28 +9,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private CardView card_pemeriksaan;
-    private CardView card_riwayat;
+    private ArrayList<Dokter> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        recyclerView = (RecyclerView) findViewById(R.id.recyler_view_dokter);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
+        recyclerView = findViewById(R.id.recyler_view_dokter);
         recyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        list.addAll(getListDokter());
+        showRecyclerList();
 
-        card_pemeriksaan = findViewById(R.id.card_pemeriksaan);
+        CardView card_pemeriksaan = findViewById(R.id.card_pemeriksaan);
         card_pemeriksaan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        card_riwayat = findViewById(R.id.card_riwayat);
+        CardView card_riwayat = findViewById(R.id.card_riwayat);
         card_riwayat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,5 +43,27 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void showRecyclerList() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ListDokterAdapter listDokterAdapter = new ListDokterAdapter(list);
+        recyclerView.setAdapter(listDokterAdapter);
+    }
+
+    private ArrayList<Dokter> getListDokter() {
+        String[] dataNama = getResources().getStringArray(R.array.data_dokter);
+
+        ArrayList<Dokter> listDokter = new ArrayList<>();
+
+        for (String s : dataNama) {
+            Dokter dokter = new Dokter();
+            dokter.setNama(s);
+            dokter.setFoto("R.drawable.foto_dokter");
+
+            listDokter.add(dokter);
+        }
+
+        return  listDokter;
     }
 }

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,8 +29,8 @@
                 android:layout_marginStart="32dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome,"
-                android:id="@+id/welcome_text_home"
+                android:text="@string/welcome"
+                android:id="@+id/txt_home_card_atas"
                 android:fontFamily="@font/ttnorms_regular"
                 android:textSize="10pt"
                 android:textColor="@android:color/white"
@@ -37,8 +40,8 @@
                 android:layout_marginStart="32dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dea Amartya"
-                android:id="@+id/nama_text_home"
+                android:text="@string/nama_user"
+                android:id="@+id/txt_home_nama"
                 android:fontFamily="@font/ttnorms_bold"
                 android:layout_marginTop="2dp"
                 android:textSize="12pt"
@@ -51,8 +54,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:focusable="true"
-        android:checkable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp"
@@ -83,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="Konsultasi dengan Dokter"
+                android:text="@string/konsultasi_dengan_dokter"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textColor="@android:color/white"
                 />
@@ -91,9 +92,8 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:contentDescription="Card Logo"
             app:srcCompat="@drawable/ic_baseline_settings_24"
-            android:layout_gravity="center"/>
+            android:layout_gravity="end"/>
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -121,6 +121,7 @@
         android:layout_marginTop="32dp"
         android:id="@+id/recyler_view_dokter"
         tools:listitem="@layout/card_dokter"
+        android:scrollbars="vertical"
         />
 
     <com.google.android.material.card.MaterialCardView
@@ -183,3 +184,4 @@
         style="@style/ThemeOverlay.App.BottomNavigationView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
