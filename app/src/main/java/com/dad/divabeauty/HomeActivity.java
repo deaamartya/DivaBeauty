@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void showRecyclerList() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         ListDokterAdapter listDokterAdapter = new ListDokterAdapter(list);
         recyclerView.setAdapter(listDokterAdapter);
     }
