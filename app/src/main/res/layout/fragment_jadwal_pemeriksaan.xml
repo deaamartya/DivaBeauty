@@ -4,31 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".JadwalPemeriksaanFragment">
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".JadwalPemeriksaanFragment">
-
-    <androidx.recyclerview.widget.RecyclerView
+    android:layout_height="match_parent">
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/calendar_item" />
+        android:layout_height="200dp"
+        android:background="@drawable/rectangle_radius">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jadwalkan Pemeriksaan"
+                android:fontFamily="@font/ttnorms_bold"
+                android:textSize="10pt"
+                android:textAlignment="center"
+                android:paddingTop="32dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@android:color/white"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/calendar_item"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:id="@+id/rv_calendar"/>
+
+        </LinearLayout>
+    </FrameLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pilihan Slot Jam"
         android:fontFamily="@font/ttnorms_bold"
-        android:layout_marginBottom="8dp"/>
+        android:textSize="8pt"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"/>
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:singleSelection="true"
-        app:selectionRequired="true">
+        app:selectionRequired="true"
+        android:layout_marginStart="16dp">
         <com.google.android.material.chip.Chip
             android:id="@+id/chip"
             android:layout_width="wrap_content"

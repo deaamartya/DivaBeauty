@@ -55,6 +55,8 @@ public class ListDokterAdapter extends RecyclerView.Adapter<ListDokterAdapter.Li
             super(itemView);
             imgDokter = itemView.findViewById(R.id.foto_dokter);
             namaDokter = itemView.findViewById(R.id.nama_dokter);
+
+            imgDokter.setClipToOutline(true);
         }
     }
 }

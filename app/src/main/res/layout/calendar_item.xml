@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:checkable="true"
     android:clickable="true"
-    >
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardBackgroundColor="#355C7D"
+    android:id="@+id/calendar_item_card">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,12 +21,16 @@
             android:text="Sen"
             android:layout_gravity="top"
             android:layout_marginBottom="8dp"
+            android:id="@+id/txt_nama_hari"
+            android:textColor="@android:color/white"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="18"
             android:layout_gravity="center"
+            android:id="@+id/txt_tanggal"
+            android:textColor="@android:color/white"
             />
     </LinearLayout>
 
