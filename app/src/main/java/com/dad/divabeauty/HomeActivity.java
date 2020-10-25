@@ -59,7 +59,7 @@ public class HomeActivity extends AppCompatActivity {
         for (String s : dataNama) {
             Dokter dokter = new Dokter();
             dokter.setNama(s);
-            dokter.setFoto("R.drawable.foto_dokter");
+            dokter.setFoto("foto_dokter");
 
             listDokter.add(dokter);
         }

@@ -33,8 +33,10 @@ public class ListDokterAdapter extends RecyclerView.Adapter<ListDokterAdapter.Li
         Dokter dokter = listDokter.get(position);
 
         Glide.with(holder.itemView.getContext())
-                .load(dokter.getFoto())
-                .apply(new RequestOptions().override(55,55))
+                .load(
+                        holder.itemView.getResources()
+                        .getIdentifier(dokter.getFoto(), "drawable", holder.itemView.getContext().getPackageName())
+                )
                 .into(holder.imgDokter);
 
         holder.namaDokter.setText(dokter.getNama());
