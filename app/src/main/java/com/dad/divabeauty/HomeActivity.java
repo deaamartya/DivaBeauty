@@ -1,5 +1,6 @@
 package com.dad.divabeauty;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -40,10 +43,44 @@ public class HomeActivity extends AppCompatActivity {
         card_riwayat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, RiwayatKonsultasi.class);
+                Intent intent = new Intent(HomeActivity.this, RiwayatKonsultasiActivity.class);
                 startActivity(intent);
             }
         });
+
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setSelectedItemId(R.id.page_1);
+        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+
+                switch (item.getItemId()){
+                    case R.id.page_1:
+                        intent = new Intent(HomeActivity.this,HomeActivity.class);
+                        break;
+
+                    case R.id.page_2:
+                        intent = new Intent(HomeActivity.this,RiwayatKonsultasiActivity.class);
+                        break;
+
+                    case R.id.page_3:
+                        intent = new Intent(HomeActivity.this,InboxPasienActivity.class);
+                        break;
+
+                    case R.id.page_4:
+                        intent = new Intent(HomeActivity.this,SettingsActivity.class);
+                        break;
+
+                    default:
+                        intent = new Intent(HomeActivity.this,HomeActivity.class);
+                }
+
+                startActivity(intent);
+                return true;
+            }
+        });
+
     }
 
     private void showRecyclerList() {
