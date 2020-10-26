@@ -12,7 +12,7 @@
     android:layout_height="match_parent">
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="260dp"
         android:background="@drawable/rectangle_radius">
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,8 +34,9 @@
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/calendar_item"
                 android:orientation="horizontal"
-                android:padding="16dp"
-                android:id="@+id/rv_calendar"/>
+                android:padding="24dp"
+                android:layout_marginBottom="32dp"
+                android:id="@+id/rv_calendar" />
 
         </LinearLayout>
     </FrameLayout>
@@ -44,10 +45,11 @@
         android:layout_height="wrap_content"
         android:text="Pilihan Slot Jam"
         android:fontFamily="@font/ttnorms_bold"
-        android:textSize="8pt"
+        android:textSize="10pt"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="32dp"
+        android:textColor="@android:color/black"/>
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
@@ -56,50 +58,34 @@
         app:singleSelection="true"
         app:selectionRequired="true"
         android:layout_marginStart="16dp">
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="08.00 - 12.00"
-            style="@style/Widget.MaterialComponents.Chip.Choice"/>
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="13.00 - 17.00"
-            android:checked="true"
-            app:checkedIcon="@drawable/ic_baseline_check_24"
-            app:checkedIconEnabled="true"
-            style="@style/Widget.MaterialComponents.Chip.Choice"/>
-    </com.google.android.material.chip.ChipGroup>
 
-    <com.google.android.material.card.MaterialCardView
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/slotjam_chip"
+            android:id="@+id/rv_slotjam"/>
+
+    </com.google.android.material.chip.ChipGroup>
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:checkable="true"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/register"
-                android:layout_marginEnd="32dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dr. Bumi Langit"
-                android:layout_gravity="center_vertical"/>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+        android:text="Pilihan Dokter"
+        android:fontFamily="@font/ttnorms_bold"
+        android:textSize="10pt"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:textColor="@android:color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_dokter_jadwal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        tools:listitem="@layout/card_dokter_jadwal"/>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_pilih_jadwal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pilih"

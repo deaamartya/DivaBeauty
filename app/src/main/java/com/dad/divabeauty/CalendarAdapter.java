@@ -5,7 +5,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 
@@ -16,13 +20,14 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView tb_day, tb_date;
+        private TextView tb_day, tb_date, tb_month;
 
 
         public MyViewHolder(View view) {
             super(view);
             tb_day = (TextView) view.findViewById(R.id.txt_nama_hari);
             tb_date = (TextView) view.findViewById(R.id.txt_tanggal);
+            tb_month = (TextView) view.findViewById(R.id.txt_nama_bulan);
         }
 
     }
@@ -37,17 +42,18 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyView
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.calendar_item, parent, false);
 
-
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        MyCalendar calendar = mCalendar.get(position);
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
+        final MyCalendar calendar = mCalendar.get(position);
 
         holder.tb_day.setText(calendar.getDay());
 
         holder.tb_date.setText(calendar.getDate());
+
+        holder.tb_month.setText(calendar.getMonth());
 
     }
 

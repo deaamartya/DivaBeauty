@@ -8,9 +8,6 @@ public class MyCalendar {
     private String date, month, year;
     private int pos;
 
-    public MyCalendar() {
-    }
-
     public MyCalendar(String day, String date, String month, String year, int i) {
         this.day = day;
         this.date = date;

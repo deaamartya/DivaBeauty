@@ -23,7 +23,6 @@ public class myCalendarData {
         this.currentyear=calendar.get(Calendar.YEAR);
         this.dayofweek= calendar.get(Calendar.DAY_OF_WEEK);
         this.stringDayofWeek = dateFormat.format(calendar.getTime());
-
     }
 
     public void getNextWeekDay(int nxt){

@@ -1,58 +1,30 @@
 package com.dad.divabeauty;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Jadwal_SuccessFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+
 public class Jadwal_SuccessFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH.mm");
     public Jadwal_SuccessFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Jadwal_SuccessFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Jadwal_SuccessFragment newInstance(String param1, String param2) {
-        Jadwal_SuccessFragment fragment = new Jadwal_SuccessFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -60,5 +32,23 @@ public class Jadwal_SuccessFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_jadwal__success, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Jakarta"));
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        TextView txt_timestamp = (TextView) view.findViewById(R.id.timestamp_pembuatan);
+        String tglwaktuwib = "Antrian ini dibuat pada "+sdf.format(timestamp) + " WIB";
+        txt_timestamp.setText(tglwaktuwib);
+        Button dashboard = (Button) view.findViewById(R.id.btn_success_back_to_home);
+        dashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

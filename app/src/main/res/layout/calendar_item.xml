@@ -21,7 +21,7 @@
             android:text="Sen"
             android:layout_gravity="top"
             android:layout_marginBottom="8dp"
-            android:id="@+id/txt_nama_hari"
+            android:id="@+id/txt_nama_bulan"
             android:textColor="@android:color/white"
             />
         <TextView
@@ -30,6 +30,17 @@
             android:text="18"
             android:layout_gravity="center"
             android:id="@+id/txt_tanggal"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="8dp"
+            android:textSize="9pt"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sen"
+            android:layout_gravity="top"
+
+            android:id="@+id/txt_nama_hari"
             android:textColor="@android:color/white"
             />
     </LinearLayout>
