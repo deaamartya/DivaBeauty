@@ -1,8 +1,11 @@
 package com.dad.divabeauty;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +34,22 @@ public class DetailInboxActivity extends AppCompatActivity {
         tgl.setText(tglpemeriksaan);
 
         ImageView foto = (ImageView) findViewById(R.id.foto_dokter_detail_inbox);
+        Glide.with(this)
+                .load(
+                        getResources().getIdentifier(fotoDokter, "drawable", getPackageName())
+                )
+                .into(foto);
+        foto.setClipToOutline(true);
+        catatanDokter.setEnabled(false);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("Detail Kotak Masuk");
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
