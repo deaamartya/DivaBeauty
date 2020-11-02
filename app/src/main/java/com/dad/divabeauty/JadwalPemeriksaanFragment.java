@@ -71,11 +71,11 @@ public class JadwalPemeriksaanFragment extends Fragment {
         rv_calendar.addOnItemTouchListener(new RecyclerTouchListener(getContext(), rv_calendar, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                for (int i = 0; i < calendarList.size()-1; i++){
-                    MaterialCardView childView = (MaterialCardView) rv_calendar.getChildAt(i);
-                    childView.setChecked(false);
-                    childView.setCardBackgroundColor(Color.TRANSPARENT);
-                }
+//                for (int i = 0; i < calendarList.size()-1; i++){
+//                    MaterialCardView childView = (MaterialCardView) rv_calendar.getChildAt(i);
+//                    childView.setChecked(false);
+//                    childView.setCardBackgroundColor(Color.TRANSPARENT);
+//                }
                 MaterialCardView cardView;
                 if(position < calendarList.size())
                     cardView = (MaterialCardView) rv_calendar.getChildAt(position);

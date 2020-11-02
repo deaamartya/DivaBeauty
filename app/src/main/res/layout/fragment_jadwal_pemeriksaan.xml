@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Jadwalkan Pemeriksaan"
+                android:text="Jadwalkan Konsultasi"
                 android:fontFamily="@font/ttnorms_bold"
                 android:textSize="10pt"
                 android:textAlignment="center"
