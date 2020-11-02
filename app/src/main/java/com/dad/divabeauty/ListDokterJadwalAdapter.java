@@ -18,7 +18,7 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.ArrayList;
 
 public class ListDokterJadwalAdapter extends RecyclerView.Adapter<ListDokterJadwalAdapter.ListViewHolder> {
-    private ArrayList<Dokter> listDokter;
+    private final ArrayList<Dokter> listDokter;
 
     public ListDokterJadwalAdapter(ArrayList<Dokter> list){
         this.listDokter = list;

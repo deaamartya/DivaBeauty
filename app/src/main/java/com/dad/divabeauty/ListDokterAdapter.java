@@ -15,7 +15,7 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 
 public class ListDokterAdapter extends RecyclerView.Adapter<ListDokterAdapter.ListViewHolder> {
-    private ArrayList<Dokter> listDokter;
+    private final ArrayList<Dokter> listDokter;
 
     public ListDokterAdapter(ArrayList<Dokter> list){
         this.listDokter = list;

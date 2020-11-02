@@ -6,8 +6,8 @@ import java.util.Calendar;
 public class myCalendarData {
     private int startday, currentmonth, currentyear,dayofweek;
     private String stringDayofWeek;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("E");
-    private Calendar calendar ;
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("E");
+    private final Calendar calendar ;
     // constructor
 
     public  myCalendarData (int start){

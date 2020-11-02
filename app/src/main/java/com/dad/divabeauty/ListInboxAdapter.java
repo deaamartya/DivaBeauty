@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class ListInboxAdapter extends RecyclerView.Adapter<ListInboxAdapter.ListViewHolder> {
-    private ArrayList<Inbox> listInbox;
+    private final ArrayList<Inbox> listInbox;
 
     public ListInboxAdapter(ArrayList<Inbox> list){
         this.listInbox = list;

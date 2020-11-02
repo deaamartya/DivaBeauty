@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class InboxPasienActivity extends AppCompatActivity {
     private RecyclerView rv_inbox;
-    private ArrayList<Inbox> listInbox = new ArrayList<>();
+    private final ArrayList<Inbox> listInbox = new ArrayList<>();
     private String namaDokter,fotoDokter,tglpemeriksaan,catatan;
 
     @Override

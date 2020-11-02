@@ -24,16 +24,16 @@ public class DetailInboxActivity extends AppCompatActivity {
         String catatan = getIntent().getExtras().getString("catatan");
         String tglpemeriksaan = getIntent().getExtras().getString("tglpemeriksaan");
 
-        TextView nama = (TextView) findViewById(R.id.nama_dokter_detail_inbox);
+        TextView nama = findViewById(R.id.nama_dokter_detail_inbox);
         nama.setText(namaDokter);
 
-        TextView catatanDokter = (TextView) findViewById(R.id.catatan_detail_inbox);
+        TextView catatanDokter = findViewById(R.id.catatan_detail_inbox);
         catatanDokter.setText(catatan);
 
-        TextView tgl = (TextView) findViewById(R.id.waktu_pesan);
+        TextView tgl = findViewById(R.id.waktu_pesan);
         tgl.setText(tglpemeriksaan);
 
-        ImageView foto = (ImageView) findViewById(R.id.foto_dokter_detail_inbox);
+        ImageView foto = findViewById(R.id.foto_dokter_detail_inbox);
         Glide.with(this)
                 .load(
                         getResources().getIdentifier(fotoDokter, "drawable", getPackageName())

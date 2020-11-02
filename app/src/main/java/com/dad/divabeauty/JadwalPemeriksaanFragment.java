@@ -34,13 +34,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 public class JadwalPemeriksaanFragment extends Fragment {
-    private List<MyCalendar> calendarList= new ArrayList<>();
+    private final List<MyCalendar> calendarList= new ArrayList<>();
     private CalendarAdapter mAdapter;
-    private ArrayList<Dokter> list = new ArrayList<>();
+    private final ArrayList<Dokter> list = new ArrayList<>();
     private RecyclerView rv_dokter;
     private RecyclerView rv_calendar;
     private RecyclerView rv_slotjam;
-    private ArrayList<SlotJam> listSlot = new ArrayList<>();
+    private final ArrayList<SlotJam> listSlot = new ArrayList<>();
     private String namaDokter,slotjam,tgl,fotoDokter;
 
     @Override
@@ -86,13 +86,13 @@ public class JadwalPemeriksaanFragment extends Fragment {
 //                cardView.setCardBackgroundColor(color);
                 cardView.setChecked(true);
                 MyCalendar calendar = calendarList.get(position);
-                tgl = new String(calendar.getDate()+" "+calendar.getMonth()+" "+calendar.getYear());
+                tgl = calendar.getDate() + " " + calendar.getMonth() + " " + calendar.getYear();
             }
 
             @Override
             public void onLongClick(View view, int position) {
                 MyCalendar calendar = calendarList.get(position);
-                tgl = new String(calendar.getDate()+" "+calendar.getMonth()+" "+calendar.getYear());
+                tgl = calendar.getDate() + " " + calendar.getMonth() + " " + calendar.getYear();
             }
         }));
 
@@ -156,7 +156,7 @@ public class JadwalPemeriksaanFragment extends Fragment {
             }
         }));
 
-        Button pilih = (Button) view.findViewById(R.id.btn_pilih_jadwal);
+        Button pilih = view.findViewById(R.id.btn_pilih_jadwal);
         pilih.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

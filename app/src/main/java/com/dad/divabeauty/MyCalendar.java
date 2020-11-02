@@ -6,7 +6,7 @@ import java.util.Calendar;
 public class MyCalendar {
     private String day;
     private String date, month, year;
-    private int pos;
+    private final int pos;
 
     public MyCalendar(String day, String date, String month, String year, int i) {
         this.day = day;

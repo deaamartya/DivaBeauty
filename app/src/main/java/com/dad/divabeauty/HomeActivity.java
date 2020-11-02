@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private ArrayList<Dokter> list = new ArrayList<>();
+    private final ArrayList<Dokter> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

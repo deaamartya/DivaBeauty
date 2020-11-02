@@ -15,19 +15,21 @@ import java.util.List;
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.MyViewHolder> {
 
-    private List<MyCalendar> mCalendar;
+    private final List<MyCalendar> mCalendar;
     private int recyclecount=0;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView tb_day, tb_date, tb_month;
+        private final TextView tb_day;
+        private final TextView tb_date;
+        private final TextView tb_month;
 
 
         public MyViewHolder(View view) {
             super(view);
-            tb_day = (TextView) view.findViewById(R.id.txt_nama_hari);
-            tb_date = (TextView) view.findViewById(R.id.txt_tanggal);
-            tb_month = (TextView) view.findViewById(R.id.txt_nama_bulan);
+            tb_day = view.findViewById(R.id.txt_nama_hari);
+            tb_date = view.findViewById(R.id.txt_tanggal);
+            tb_month = view.findViewById(R.id.txt_nama_bulan);
         }
 
     }

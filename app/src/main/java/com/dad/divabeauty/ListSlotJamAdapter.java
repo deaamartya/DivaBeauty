@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class ListSlotJamAdapter extends RecyclerView.Adapter<ListSlotJamAdapter.ListViewHolder> {
-    private ArrayList<SlotJam> listSlotJam;
+    private final ArrayList<SlotJam> listSlotJam;
 
     public ListSlotJamAdapter(ArrayList<SlotJam> list){
         this.listSlotJam = list;

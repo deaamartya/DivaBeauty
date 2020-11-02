@@ -38,9 +38,9 @@ public class Jadwal_KeluhanFotoFragment extends Fragment {
         EXTRA_JAM = getArguments().getString(EXTRA_JAM);
         EXTRA_FOTO = getArguments().getString(EXTRA_FOTO);
         EXTRA_NAME = getArguments().getString(EXTRA_NAME);
-        TextView tglJam = (TextView) view.findViewById(R.id.jam_dan_tanggal_keluhan);
-        TextView nama_dokter = (TextView) view.findViewById(R.id.nama_dokter_keluhan);
-        ImageView foto_dokter = (ImageView) view.findViewById(R.id.foto_dokter_keluhan);
+        TextView tglJam = view.findViewById(R.id.jam_dan_tanggal_keluhan);
+        TextView nama_dokter = view.findViewById(R.id.nama_dokter_keluhan);
+        ImageView foto_dokter = view.findViewById(R.id.foto_dokter_keluhan);
 
         Log.d("isi extra tglJam",EXTRA_JAM +" "+ EXTRA_TANGGAL);
 
@@ -55,7 +55,7 @@ public class Jadwal_KeluhanFotoFragment extends Fragment {
 
         foto_dokter.setClipToOutline(true);
 
-        Button daftar = (Button) view.findViewById(R.id.btn_keluhan_daftar);
+        Button daftar = view.findViewById(R.id.btn_keluhan_daftar);
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -39,10 +39,10 @@ public class Jadwal_SuccessFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         sdf.setTimeZone(TimeZone.getTimeZone("Asia/Jakarta"));
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        TextView txt_timestamp = (TextView) view.findViewById(R.id.timestamp_pembuatan);
+        TextView txt_timestamp = view.findViewById(R.id.timestamp_pembuatan);
         String tglwaktuwib = "Antrian ini dibuat pada "+sdf.format(timestamp) + " WIB";
         txt_timestamp.setText(tglwaktuwib);
-        Button dashboard = (Button) view.findViewById(R.id.btn_success_back_to_home);
+        Button dashboard = view.findViewById(R.id.btn_success_back_to_home);
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
