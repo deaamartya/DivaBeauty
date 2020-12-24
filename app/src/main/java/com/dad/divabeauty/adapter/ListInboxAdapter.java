@@ -3,6 +3,7 @@ package com.dad.divabeauty.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,8 @@ public class ListInboxAdapter extends RecyclerView.Adapter<ListInboxAdapter.List
     public void onBindViewHolder(@NonNull ListInboxAdapter.ListViewHolder holder, int position) {
         Inbox inbox = listInbox.get(position);
         String text = inbox.getNamaDokter()+" mengirim catatan untuk pemeriksaan "+inbox.getTglpemeriksaan();
-        holder.inbox.setText(text);
+        holder.pesan.setText(text);
+        holder.nama_dokter.setText(inbox.getNamaDokter());
     }
 
     @Override
@@ -40,11 +42,16 @@ public class ListInboxAdapter extends RecyclerView.Adapter<ListInboxAdapter.List
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
-        TextView inbox;
+        TextView pesan;
+        ImageView foto_dokter;
+        TextView nama_dokter;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
-            inbox = itemView.findViewById(R.id.txt_inbox);
+            pesan = itemView.findViewById(R.id.isi_pesan_inbox);
+            foto_dokter = itemView.findViewById(R.id.foto_dokter_inbox);
+            foto_dokter.setClipToOutline(true);
+            nama_dokter = itemView.findViewById(R.id.nama_dokter_inbox);
         }
     }
 }

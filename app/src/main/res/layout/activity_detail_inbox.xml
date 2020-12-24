@@ -5,88 +5,129 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.DetailInboxActivity">
-
-    <TextView
+    tools:context=".activity.DetailInboxActivity"
+    style="@style/Theme.Design.NoActionBar">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/rectangle_radius"
+        android:backgroundTint="#F8F8F8">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="50dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:src="@drawable/catatan"
+                android:id="@+id/icon_medical"
+                android:foregroundGravity="center"
+                android:layout_marginLeft="32dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Catatan"
+                android:textSize="14pt"
+                android:fontFamily="@font/ttnorms_bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_toRightOf="@+id/icon_medical"
+                android:id="@+id/judul_halaman"
+                android:layout_marginLeft="16dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="16dp"
+                android:text="#20201013007 12/10/2020 10:35WIB"
+                android:textSize="6pt"
+                android:fontFamily="@font/ttnorms_regular"
+                android:layout_toRightOf="@+id/icon_medical"
+                android:layout_below="@+id/judul_halaman"
+                android:id="@+id/jam_tanggal_riwayat"/>
+        </RelativeLayout>
+    </FrameLayout>
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Catatan dari dokter"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/ttnorms_bold"
-        android:textSize="12pt"
-        android:textColor="@android:color/black"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="23/10/2020 12:00 WIB"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:id="@+id/waktu_pesan"
-        android:fontFamily="@font/ttnorms_regular"
-        android:textSize="7pt"
-        android:textColor="@android:color/black"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="ESTIMASI JAM KONSULTASI"
-        android:fontFamily="@font/ttnorms_bold"
-        android:textColor="#dea5a4" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="13/10/2020 08:30"
-        android:fontFamily="@font/ttnorms_regular"
-        android:textColor="#000000"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:id="@+id/estimasi_jam"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="NOMOR ANTRIAN"
-        android:fontFamily="@font/ttnorms_bold"
-        android:textColor="#dea5a4" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="3"
-        android:fontFamily="@font/ttnorms_regular"
-        android:textColor="#000000"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
-
+        app:strokeColor="@color/stroke_color"
+        app:strokeWidth="1dp"
+        android:layout_margin="16dp"
+        app:cardElevation="0dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/jadwalkan"
+                android:id="@+id/icon_estimasi"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="ESTIMASI JAM PERIKSA"
+                android:fontFamily="@font/ttnorms_bold"
+                android:textColor="#dea5a4"
+                android:layout_toRightOf="@+id/icon_estimasi"
+                android:id="@+id/text_estimasi_detail_inbox"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="13/10/2020 08:30"
+                android:fontFamily="@font/ttnorms_regular"
+                android:textColor="#000000"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:id="@+id/estimasi_jam_detail_inbox"
+                android:layout_below="@+id/text_estimasi_detail_inbox"
+                android:layout_toRightOf="@+id/icon_estimasi"/>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/nomorantrian"
+                android:id="@+id/icon_nomorantrian"
+                android:layout_below="@id/estimasi_jam_detail_inbox"
+                android:layout_marginTop="24dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
+                android:text="NOMOR ANTRIAN"
+                android:fontFamily="@font/ttnorms_bold"
+                android:textColor="#dea5a4"
+                android:id="@+id/text_nomor_antrian"
+                android:layout_below="@id/estimasi_jam_detail_inbox"
+                android:layout_toRightOf="@+id/icon_nomorantrian" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:fontFamily="@font/ttnorms_regular"
+                android:textColor="#000000"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_toRightOf="@+id/icon_nomorantrian"
+                android:id="@+id/nomor_antrian_detail_inbox"
+                android:layout_below="@+id/text_nomor_antrian"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
         app:strokeWidth="1dp"
-        app:strokeColor="@android:color/white"
+        app:strokeColor="@color/stroke_color"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/darkBlue"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="20dp"
-            >
+            android:padding="20dp">
             <ImageView
                 android:id="@+id/foto_dokter_detail_inbox"
                 android:layout_width="60dp"
@@ -101,21 +142,22 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="Nama dokter coba aja kooooooooook"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:fontFamily="@font/ttnorms_bold"
                 android:textSize="8pt"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_keluhan"
+        android:id="@+id/input_catatan"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Catatan"
+        android:tooltipText="Catatan"
         android:layout_marginTop="16dp"
+        android:hint="Catatan"
+        app:hintEnabled="true"
         android:layout_marginHorizontal="16dp">
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -128,7 +170,7 @@
             android:scrollbars="vertical"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/catatan_detail_inbox"
-            />
+            android:text="Sebelum konsultasi harap berhenti untuk menggunakan produk skincare terlebih dahulu ya dan gunakan pembersih muka yang gentle. Usahakan tidak menyentuh wajah untuk menghindari bakteri."/>
     </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>
