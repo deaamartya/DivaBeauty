@@ -1,62 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".DetailRiwayat">
+    tools:context=".activity.DetailRiwayatActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar"
-            android:padding="16dp">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+            android:layout_height="150dp"
+            android:background="@drawable/rectangle_radius"
+            android:backgroundTint="#F8F8F8">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:paddingTop="50dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/medicalrecord"
+                    android:id="@+id/icon_medical"
+                    android:foregroundGravity="center"
+                    android:layout_marginLeft="16dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:text="Detil Konsultasi"
-                    android:textSize="13pt"
+                    android:text="Detail Konsultasi"
+                    android:textSize="12pt"
                     android:fontFamily="@font/ttnorms_bold"
-                    android:textColor="@android:color/white"/>
-
+                    android:textColor="@color/colorPrimary"
+                    android:layout_toRightOf="@+id/icon_medical"
+                    android:id="@+id/judul_halaman"
+                    android:layout_marginLeft="16dp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
                     android:text="#20201013007 12/10/2020 10:35WIB"
-                    android:textSize="9pt"
-                    android:layout_marginBottom="16dp"
-                    android:fontFamily="@font/ttnorms_regular"/>
+                    android:textSize="6pt"
+                    android:fontFamily="@font/ttnorms_regular"
+                    android:layout_toRightOf="@+id/icon_medical"
+                    android:layout_below="@+id/judul_halaman"
+                    android:id="@+id/jam_tanggal_riwayat"/>
+            </RelativeLayout>
+        </FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/container_text"
+                android:layout_margin="16dp"
+                android:layout_marginEnd="16dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ESTIMASI JAM KERJA"
+                    android:fontFamily="@font/ttnorms_bold"
+                    android:textColor="#dea5a4"
+                    android:textSize="5pt"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="13/10/2020 08:30"
+                    android:fontFamily="@font/ttnorms_regular"
+                    android:textColor="#000000"
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/estimasi_jam_riwayat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="NOMOR ANTRIAN"
+                    android:fontFamily="@font/ttnorms_bold"
+                    android:textColor="#dea5a4"
+                    android:textSize="5pt"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:fontFamily="@font/ttnorms_regular"
+                    android:textColor="#000000"
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/nomor_antrian_riwayat"
+                    />
             </LinearLayout>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:checkable="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:id="@+id/card_dokter"
+                android:layout_toRightOf="@+id/container_text">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/doctor_v"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="16dp"
+                        android:id="@+id/foto_dokter_riwayat"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Dr. Dea Amartya Dmaayanti"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="@android:color/white"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="6pt"
+                            android:id="@+id/nama_dokter_riwayat"
+                            android:autoSizeMaxTextSize="10pt"
+                            />
+                    </LinearLayout>
 
+                </LinearLayout>
 
-    </com.google.android.material.appbar.AppBarLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
+        <View android:id="@+id/tile_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:background="?android:attr/dividerVertical" />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:strokeColor="@color/stroke_color"
+            app:strokeWidth="1dp"
+            android:layout_margin="16dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/woman"
+                    android:id="@+id/icon_pasien"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="PASIEN"
+                    android:fontFamily="@font/ttnorms_bold"
+                    android:textColor="#dea5a4"
+                    android:layout_toRightOf="@+id/icon_pasien"
+                    android:id="@+id/text_pasien"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nabilla Safira (20 tahun, Perempuan)"
+                    android:fontFamily="@font/ttnorms_regular"
+                    android:textColor="#000000"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:id="@+id/nama_pasien_riwayat"
+                    android:layout_below="@+id/text_pasien"
+                    android:layout_toRightOf="@+id/icon_pasien"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/medical_record"
+                    android:id="@+id/icon_keluhanawal"
+                    android:layout_below="@id/icon_pasien"
+                    android:layout_marginTop="32dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:text="KELUHAN AWAL"
+                    android:fontFamily="@font/ttnorms_bold"
+                    android:textColor="#dea5a4"
+                    android:id="@+id/text_keluhan_awal"
+                    android:layout_below="@id/nama_pasien_riwayat"
+                    android:layout_toRightOf="@+id/icon_keluhanawal" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Setelah menggunakan produk skincare yang baru saya beli. Saat pertama kali menggunakan saya merasa wajah saya panas dan sekarang muncul jerawat."
+                    android:fontFamily="@font/ttnorms_regular"
+                    android:textColor="#000000"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_toRightOf="@+id/icon_keluhanawal"
+                    android:id="@+id/keluhan_awal_riwayat"
+                    android:layout_below="@+id/text_keluhan_awal"/>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:strokeColor="@color/stroke_color"
+            app:strokeWidth="1dp"
+            android:layout_margin="16dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/pictures"
+                    android:id="@+id/icon_foto"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="FOTO"
+                    android:fontFamily="@font/ttnorms_bold"
+                    android:textColor="#dea5a4"
+                    android:layout_toRightOf="@+id/icon_foto"
+                    android:id="@+id/text_foto"/>
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_toRightOf="@+id/icon_foto"
+                    android:layout_below="@id/text_foto"
+                    android:id="@+id/foto_riwayat"
+                    android:src="@drawable/foto_kosong"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/catatan"
+                    android:id="@+id/icon_catatan"
+                    android:layout_below="@id/icon_foto"
+                    android:layout_marginTop="90dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:text="CATATAN DARI DOKTER"
+                    android:fontFamily="@font/ttnorms_bold"
+                    android:textColor="#dea5a4"
+                    android:id="@+id/text_catatan"
+                    android:layout_below="@id/foto_riwayat"
+                    android:layout_toRightOf="@+id/icon_catatan"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Setelah menggunakan produk skincare yang baru saya beli. Saat pertama kali menggunakan saya merasa wajah saya panas dan sekarang muncul jerawat."
+                    android:fontFamily="@font/ttnorms_regular"
+                    android:textColor="#000000"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_toRightOf="@+id/icon_catatan"
+                    android:id="@+id/catatan_dokter_riwayat"
+                    android:layout_below="@+id/text_catatan"/>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 
-    <include layout="@layout/content_scrolling" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.core.widget.NestedScrollView>

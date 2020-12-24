@@ -4,28 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InboxPasienActivity">
+    tools:context=".activity.InboxPasienActivity">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:layout_marginBottom="60dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="16dp">
-            <TextView
+            android:orientation="vertical">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Kotak Masuk"
-                android:layout_marginHorizontal="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/ttnorms_bold"
-                android:textSize="12pt"
-                android:textColor="@android:color/black"
-                />
+                android:layout_height="250dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/card_atas"
+                android:background="@drawable/rectangle_radius"
+                android:backgroundTint="@android:color/darker_gray"
+                android:orientation="horizontal"
+                android:paddingTop="32dp"
+                android:paddingHorizontal="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/history"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inbox"
+                        android:id="@+id/text_pilihan_dokter"
+                        android:fontFamily="@font/ttnorms_bold"
+                        android:textColor="@android:color/black"
+                        android:textSize="14pt"
+                        android:layout_marginStart="16dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -42,7 +68,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_navigation_menu"
-        style="@style/ThemeOverlay.App.BottomNavigationView"
-        android:layout_gravity="bottom"/>
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+        android:layout_gravity="bottom"
+        app:labelVisibilityMode="labeled"/>
 
 </FrameLayout>

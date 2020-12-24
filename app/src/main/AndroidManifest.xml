@@ -9,21 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailInboxActivity"
+        <activity android:name=".activity.DetailInboxActivity"
             android:theme="@style/ActionBar"></activity>
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".PemeriksaanActivity" />
+        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.PemeriksaanActivity" />
         <activity
-            android:name=".DetailRiwayat"
+            android:name=".activity.DetailRiwayatActivity"
             android:label="@string/title_activity_detail_riwayat"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RiwayatKonsultasiActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".InboxPasienActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.RiwayatKonsultasiActivity" />
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.ForgotPasswordActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.InboxPasienActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

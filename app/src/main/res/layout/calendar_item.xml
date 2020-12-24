@@ -7,7 +7,7 @@
     android:clickable="true"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
-    app:cardBackgroundColor="#355C7D"
+    app:cardBackgroundColor="#213968"
     android:id="@+id/calendar_item_card">
 
     <LinearLayout
@@ -39,7 +39,6 @@
             android:layout_height="wrap_content"
             android:text="Sen"
             android:layout_gravity="top"
-
             android:id="@+id/txt_nama_hari"
             android:textColor="@android:color/white"
             />
