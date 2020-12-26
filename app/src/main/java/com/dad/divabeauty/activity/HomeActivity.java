@@ -7,25 +7,41 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.dad.divabeauty.adapter.ListDokterAdapter;
 import com.dad.divabeauty.R;
 import com.dad.divabeauty.model.Dokter;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+
+import static com.dad.divabeauty.activity.MainActivity.PREFS_NAME;
 
 public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private final ArrayList<Dokter> list = new ArrayList<>();
+    private TextView nama_user;
+    private CollectionReference usersRef;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        settings = getSharedPreferences(PREFS_NAME, 0);
 
         recyclerView = findViewById(R.id.recyler_view_dokter);
         recyclerView.setHasFixedSize(true);
@@ -83,6 +99,36 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+        usersRef = db.collection("user");
+        nama_user = findViewById(R.id.txt_home_nama);
+        Integer id_user = settings.getInt("id_user", 0);
+        if(id_user != 0){
+            usersRef.whereEqualTo("id_user", id_user).get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            if(!queryDocumentSnapshots.getDocuments().isEmpty()) {
+                                // simpan sebagai obyek user
+                                DocumentSnapshot user = queryDocumentSnapshots.getDocuments().get(0);
+                                String fullname = user.get("nama").toString();
+                                String name = fullname;
+                                if(fullname.contains(" ")){
+                                    name = fullname.substring(0, fullname.indexOf(" "));
+                                }
+                                nama_user.setText(name);
+                            }
+                            else{
+                                nama_user.setText("");
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    nama_user.setText("");
+                }
+            });
+        }
+
 
     }
 

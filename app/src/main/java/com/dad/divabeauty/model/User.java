@@ -4,8 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
-    private String id_user;
-    private String id_tipe_user;
+    private Integer id_user;
+    private Integer id_tipe_user;
     private String username;
     private String email;
     private String password;
@@ -42,19 +42,19 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
     }
 
-    public String getId_user() {
+    public Integer getId_user() {
         return id_user;
     }
 
-    public void setId_user(String id_user) {
+    public void setId_user(Integer id_user) {
         this.id_user = id_user;
     }
 
-    public String getId_tipe_user() {
+    public Integer getId_tipe_user() {
         return id_tipe_user;
     }
 
-    public void setId_tipe_user(String id_tipe_user) {
+    public void setId_tipe_user(Integer id_tipe_user) {
         this.id_tipe_user = id_tipe_user;
     }
 

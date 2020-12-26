@@ -54,7 +54,8 @@
                                 <ImageView
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
-                                    android:src="@drawable/genderwoman"/>
+                                    android:src="@drawable/genderwoman"
+                                    android:id="@+id/jenis_kelamin_user"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -190,11 +191,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Akun ini dibuat pada 21/12/2020 10:56"
+                    android:text="Akun ini dibuat pada "
                     android:layout_marginVertical="8dp"
                     android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:paddingBottom="20dp"/>
+                    android:paddingBottom="20dp"
+                    android:id="@+id/created_at_user"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
