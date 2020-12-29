@@ -13,9 +13,17 @@ public class User implements Parcelable {
     private String no_telp;
     private Boolean jenis_kelamin;
 
-    public User()
-    {
+    public User() { }
 
+    public User(Integer id_user, Integer id_tipe_user, String username, String email,String password,String nama,String no_telp,Boolean jenis_kelamin){
+        this.id_user = id_user;
+        this.id_tipe_user = id_tipe_user;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.nama = nama;
+        this.no_telp = no_telp;
+        this.jenis_kelamin = jenis_kelamin;
     }
 
     protected User(Parcel in) {

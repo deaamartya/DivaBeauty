@@ -4,8 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Pasien implements Parcelable {
-    private String id_pasien;
-    private String id_user;
+    private Integer id_pasien;
+    private Integer id_user;
     private String no_ktp_pasien;
     private String no_kk_pasien;
     private String riwayat_kesehatan;
@@ -15,8 +15,8 @@ public class Pasien implements Parcelable {
     }
 
     protected Pasien(Parcel in) {
-        id_pasien = in.readString();
-        id_user = in.readString();
+        id_pasien = in.readInt();
+        id_user = in.readInt();
         no_ktp_pasien = in.readString();
         no_kk_pasien = in.readString();
         riwayat_kesehatan = in.readString();
@@ -34,19 +34,27 @@ public class Pasien implements Parcelable {
         }
     };
 
-    public String getId_pasien() {
+    public Pasien(int id_pasien, int id_user, String nik, String nokk, String riwayat) {
+        this.id_pasien = id_pasien;
+        this.id_user = id_user;
+        this.no_ktp_pasien = nik;
+        this.no_kk_pasien = nokk;
+        this.riwayat_kesehatan = riwayat;
+    }
+
+    public Integer getId_pasien() {
         return id_pasien;
     }
 
-    public void setId_pasien(String id_pasien) {
+    public void setId_pasien(Integer id_pasien) {
         this.id_pasien = id_pasien;
     }
 
-    public String getId_user() {
+    public Integer getId_user() {
         return id_user;
     }
 
-    public void setId_user(String id_user) {
+    public void setId_user(Integer id_user) {
         this.id_user = id_user;
     }
 
@@ -81,8 +89,8 @@ public class Pasien implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id_pasien);
-        dest.writeString(id_user);
+        dest.writeInt(id_pasien);
+        dest.writeInt(id_user);
         dest.writeString(no_ktp_pasien);
         dest.writeString(no_kk_pasien);
         dest.writeString(riwayat_kesehatan);
