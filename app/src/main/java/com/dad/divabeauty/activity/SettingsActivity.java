@@ -88,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity {
                             DocumentSnapshot user = queryDocumentSnapshots.getDocuments().get(0);
                             email.setText(user.get("email").toString());
                             nama_user.setText(user.get("nama").toString());
-                            tgl_lahir.setText(user.get("tanggal_lahir").toString());
+                            tgl_lahir.setText(user.get("tgl_lahir").toString());
                             boolean jenis_kelamin = Boolean.getBoolean(user.get("jenis_kelamin").toString());
                             if(jenis_kelamin)
                             {

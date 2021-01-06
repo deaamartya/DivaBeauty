@@ -131,7 +131,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean registered = register();
                 if(registered){
-                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
                 else
@@ -241,16 +241,12 @@ public class RegisterActivity extends AppCompatActivity {
             usersRef.whereEqualTo("username", username).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (DocumentSnapshot documentSnapshot : task.getResult()) {
-                            String user = documentSnapshot.getString("username");
-
-                            if (user.equals(username)) {
-                                input_username.setError("Username telah dipakai. Gunakan username lain");
-                                error = true;
-                                Log.d("error","username ditemukan");
-                            }
-                        }
+                    if (task.getResult().getDocuments().size() > 1) {
+                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                        String user = documentSnapshot.getString("username");
+                        input_username.setError("Username ditemukan di database. Gunakan username lain");
+                        error = true;
+                        Log.d("error","username ditemukan di firebase");
                     }
 
                     if (task.getResult().size() == 0) {
@@ -264,7 +260,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean register(){
-        boolean validated = validate();
+        boolean error = validate();
         String nama = input_nama.getEditText().getText().toString();
         boolean jenis_kelamin = false;
         if (laki_laki.isChecked()) {
@@ -278,50 +274,34 @@ public class RegisterActivity extends AppCompatActivity {
         String riwayat = input_riwayat.getEditText().getText().toString();
         String password = input_password.getEditText().getText().toString();
         username = input_username.getEditText().getText().toString();
+        Log.d("hasil", String.valueOf(error));
 
-        if(validated){
-            usersRef.orderBy("id_user", Query.Direction.DESCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        error = false;
+        if(error == false){
+            usersRef.orderBy("id_user", Query.Direction.ASCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     last_id = Integer.valueOf(queryDocumentSnapshots.getDocuments().get(0).get("id_user").toString());
                 }
             });
-            User user = new User(last_id+1,1,username,email,password,nama,notlp,jenis_kelamin);
-            db.collection("user").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    user_registered = true;
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    user_registered = false;
-                    regisGagalDialog.setMessage("Silahkan cek kembali data Anda");
-                }
-            });
 
-            db.collection("pasien").orderBy("id_pasien", Query.Direction.DESCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    last_id_pasien = Integer.valueOf(queryDocumentSnapshots.getDocuments().get(0).get("id_pasien").toString());
-                }
-            });
+            Integer id_user = last_id+2;
+            Log.d("id", String.valueOf(id_user));
+            User user = new User(id_user,1,username,email,password,nama,notlp,jenis_kelamin,ttl);
+//            db.collection("user").add(user);
 
-            if(user_registered){
-                Pasien pasien = new Pasien(last_id_pasien+1,last_id+1,nik,nokk,riwayat);
-                db.collection("pasien").add(pasien).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        registered = true;
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        registered = false;
-                        regisGagalDialog.setMessage("Silahkan cek kembali data Anda");
-                    }
-                });
-            }
+//            db.collection("pasien").orderBy("id_pasien", Query.Direction.DESCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                @Override
+//                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                    last_id_pasien = Integer.valueOf(queryDocumentSnapshots.getDocuments().get(0).get("id_pasien").toString());
+//                }
+//            });
+
+            Log.d("hasil regis", String.valueOf(user_registered));
+
+            Pasien pasien = new Pasien(last_id_pasien+1,id_user,nik,nokk,riwayat);
+//            db.collection("pasien").add(pasien);
+            registered = true;
         }
         else{
             regisGagalDialog.setMessage("Pastikan data yang Anda masukkan adalah benar");

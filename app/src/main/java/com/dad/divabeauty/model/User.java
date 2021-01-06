@@ -12,10 +12,11 @@ public class User implements Parcelable {
     private String nama;
     private String no_telp;
     private Boolean jenis_kelamin;
+    private String tgl_lahir;
 
     public User() { }
 
-    public User(Integer id_user, Integer id_tipe_user, String username, String email,String password,String nama,String no_telp,Boolean jenis_kelamin){
+    public User(Integer id_user, Integer id_tipe_user, String username, String email,String password,String nama,String no_telp,Boolean jenis_kelamin, String tgl_lahir){
         this.id_user = id_user;
         this.id_tipe_user = id_tipe_user;
         this.username = username;
@@ -24,6 +25,7 @@ public class User implements Parcelable {
         this.nama = nama;
         this.no_telp = no_telp;
         this.jenis_kelamin = jenis_kelamin;
+        this.tgl_lahir = tgl_lahir;
     }
 
     protected User(Parcel in) {
@@ -112,5 +114,13 @@ public class User implements Parcelable {
 
     public void setJenis_kelamin(Boolean jenis_kelamin) {
         this.jenis_kelamin = jenis_kelamin;
+    }
+
+    public String getTgl_lahir() {
+        return tgl_lahir;
+    }
+
+    public void setTgl_lahir(String tgl_lahir) {
+        this.tgl_lahir = tgl_lahir;
     }
 }
