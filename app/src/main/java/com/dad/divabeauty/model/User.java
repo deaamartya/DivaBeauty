@@ -3,6 +3,10 @@ package com.dad.divabeauty.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class User implements Parcelable {
     private Integer id_user;
     private Integer id_tipe_user;
@@ -13,6 +17,7 @@ public class User implements Parcelable {
     private String no_telp;
     private Boolean jenis_kelamin;
     private String tgl_lahir;
+    private String created_at;
 
     public User() { }
 
@@ -26,6 +31,13 @@ public class User implements Parcelable {
         this.no_telp = no_telp;
         this.jenis_kelamin = jenis_kelamin;
         this.tgl_lahir = tgl_lahir;
+        this.created_at = getDateTime();
+    }
+
+    private String getDateTime() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     protected User(Parcel in) {
@@ -122,5 +134,13 @@ public class User implements Parcelable {
 
     public void setTgl_lahir(String tgl_lahir) {
         this.tgl_lahir = tgl_lahir;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 }

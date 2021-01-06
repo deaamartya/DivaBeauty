@@ -35,6 +35,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.core.OrderBy;
+import com.google.firestore.v1.StructuredQuery;
 
 public class RegisterActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -90,11 +91,6 @@ public class RegisterActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // getSupportFragmentManager() to
-                        // interact with the fragments
-                        // associated with the material design
-                        // date picker tag is to get any error
-                        // in logcat
                         materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
                     }
                 });
@@ -103,14 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onPositiveButtonClick(Object selection) {
-
-                        // if the user clicks on the positive
-                        // button that is ok button update the
-                        // selected date
                         tgl_lahir.getEditText().setText(materialDatePicker.getHeaderText());
-                        // in the above statement, getHeaderText
-                        // is the selected date preview from the
-                        // dialog
                     }
                 });
 
@@ -261,51 +250,46 @@ public class RegisterActivity extends AppCompatActivity {
 
     public boolean register(){
         boolean error = validate();
-        String nama = input_nama.getEditText().getText().toString();
-        boolean jenis_kelamin = false;
-        if (laki_laki.isChecked()) {
-            jenis_kelamin = true;
-        }
-        String ttl = tgl_lahir.getEditText().getText().toString();
-        String email = input_email.getEditText().getText().toString();
-        String notlp = input_no_telp.getEditText().getText().toString();
-        String nik = input_noktp.getEditText().getText().toString();
-        String nokk = input_nokk.getEditText().getText().toString();
-        String riwayat = input_riwayat.getEditText().getText().toString();
-        String password = input_password.getEditText().getText().toString();
-        username = input_username.getEditText().getText().toString();
-        Log.d("hasil", String.valueOf(error));
-
-        error = false;
-        if(error == false){
-            usersRef.orderBy("id_user", Query.Direction.ASCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        if(!error){
+            usersRef.orderBy("id_user", Query.Direction.DESCENDING).limit(1).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     last_id = Integer.valueOf(queryDocumentSnapshots.getDocuments().get(0).get("id_user").toString());
+                    Log.d("last_id", String.valueOf(last_id));
+                    String nama = input_nama.getEditText().getText().toString();
+                    boolean jenis_kelamin = false;
+                    if (laki_laki.isChecked()) {
+                        jenis_kelamin = true;
+                    }
+                    String ttl = tgl_lahir.getEditText().getText().toString();
+                    String email = input_email.getEditText().getText().toString();
+                    String notlp = input_no_telp.getEditText().getText().toString();
+                    String password = input_password.getEditText().getText().toString();
+                    username = input_username.getEditText().getText().toString();
+                    User user = new User(last_id+1,1,username,email,password,nama,notlp,jenis_kelamin,ttl);
+                    Log.d("created_at",user.getCreated_at());
+                    Log.d("user",user.toString());
+                    db.collection("user").add(user);
+                    db.collection("pasien").orderBy("id_pasien", Query.Direction.DESCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            last_id_pasien = Integer.valueOf(queryDocumentSnapshots.getDocuments().get(0).get("id_pasien").toString());
+                            String nik = input_noktp.getEditText().getText().toString();
+                            String nokk = input_nokk.getEditText().getText().toString();
+                            String riwayat = input_riwayat.getEditText().getText().toString();
+                            Pasien pasien = new Pasien(last_id_pasien+1,last_id+1,nik,nokk,riwayat);
+                            db.collection("pasien").add(pasien);
+                        }
+                    });
                 }
             });
-
-            Integer id_user = last_id+2;
-            Log.d("id", String.valueOf(id_user));
-            User user = new User(id_user,1,username,email,password,nama,notlp,jenis_kelamin,ttl);
-//            db.collection("user").add(user);
-
-//            db.collection("pasien").orderBy("id_pasien", Query.Direction.DESCENDING).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                @Override
-//                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                    last_id_pasien = Integer.valueOf(queryDocumentSnapshots.getDocuments().get(0).get("id_pasien").toString());
-//                }
-//            });
-
-            Log.d("hasil regis", String.valueOf(user_registered));
-
-            Pasien pasien = new Pasien(last_id_pasien+1,id_user,nik,nokk,riwayat);
-//            db.collection("pasien").add(pasien);
             registered = true;
+            return true;
         }
         else{
             regisGagalDialog.setMessage("Pastikan data yang Anda masukkan adalah benar");
+            registered = false;
+            return false;
         }
-        return registered;
     }
 }

@@ -99,10 +99,10 @@ public class LoginActivity extends AppCompatActivity {
                             DocumentSnapshot user = queryDocumentSnapshots.getDocuments().get(0);
 
                             // simpan jika loggedin adalah true dan menyimpan id_user yang login.
-                            SharedPreferences.Editor editor = settings.edit(); // Open the editor for our settings
-                            editor.putBoolean("loggedIn", true); // It is no longer the first run
+                            SharedPreferences.Editor editor = settings.edit();
+                            editor.putBoolean("loggedIn", true);
                             editor.putInt("id_user", Integer.valueOf(user.get("id_user").toString()));
-                            editor.commit(); // Save all changed settings
+                            editor.commit();
                             ada = true;
                         }
                         else{
