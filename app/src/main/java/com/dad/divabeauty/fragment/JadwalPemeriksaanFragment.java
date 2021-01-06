@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,7 +28,12 @@ import com.dad.divabeauty.model.SlotJam;
 import com.dad.divabeauty.adapter.CalendarAdapter;
 import com.dad.divabeauty.model.Dokter;
 import com.dad.divabeauty.adapter.myCalendarData;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.card.MaterialCardView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,12 +41,18 @@ import java.util.List;
 public class JadwalPemeriksaanFragment extends Fragment {
     private final List<MyCalendar> calendarList= new ArrayList<>();
     private CalendarAdapter mAdapter;
-    private final ArrayList<Dokter> list = new ArrayList<>();
+    private ArrayList<Dokter> list = new ArrayList<>();
     private RecyclerView rv_dokter;
     private RecyclerView rv_calendar;
     private RecyclerView rv_slotjam;
-    private final ArrayList<SlotJam> listSlot = new ArrayList<>();
-    private String namaDokter,slotjam,tgl,fotoDokter;
+    private ArrayList<SlotJam> listSlot = new ArrayList<>();
+    private String tgl;
+    private SlotJam slotjam;
+    private Dokter dokter;
+    private CollectionReference slotRef;
+    private CollectionReference doktersRef;
+    private CollectionReference usersRef;
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,20 +65,18 @@ public class JadwalPemeriksaanFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        slotRef = db.collection("slot");
+        usersRef = db.collection("user");
+        doktersRef = db.collection("dokter");
+
         mAdapter = new CalendarAdapter(calendarList);
-
         rv_calendar = view.getRootView().findViewById(R.id.rv_calendar);
-
         rv_calendar.setHasFixedSize(true);
 
         final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-
         rv_calendar.setLayoutManager(mLayoutManager);
-
         rv_calendar.setItemAnimator(new DefaultItemAnimator());
-
         rv_calendar.setAdapter(mAdapter);
-
         rv_calendar.addOnItemTouchListener(new RecyclerTouchListener(getContext(), rv_calendar, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -99,8 +110,10 @@ public class JadwalPemeriksaanFragment extends Fragment {
         rv_dokter = view.findViewById(R.id.rv_dokter_jadwal);
         rv_dokter.setHasFixedSize(true);
 
-        list.addAll(getListDokter());
-        showRecyclerList();
+//        getListDokter();
+//        rv_dokter.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+//        ListDokterJadwalAdapter listDokterAdapter = new ListDokterJadwalAdapter(list);
+//        rv_dokter.setAdapter(listDokterAdapter);
 
         rv_dokter.addOnItemTouchListener(new RecyclerTouchListener(getActivity().getApplicationContext(), rv_dokter, new RecyclerTouchListener.ClickListener() {
             @Override
@@ -135,22 +148,20 @@ public class JadwalPemeriksaanFragment extends Fragment {
         rv_slotjam = view.findViewById(R.id.rv_slotjam);
         rv_slotjam.setHasFixedSize(true);
 
-        listSlot.addAll(getListSlot());
-        rv_slotjam.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        final ListSlotJamAdapter listSlotJamAdapter = new ListSlotJamAdapter(listSlot);
-        rv_slotjam.setAdapter(listSlotJamAdapter);
+        getListSlot();
+        Log.d("isi list slot",listSlot.toString());
 
         rv_slotjam.addOnItemTouchListener(new RecyclerTouchListener(getActivity().getApplicationContext(), rv_slotjam, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                SlotJam slotJam = listSlot.get(position);
-                slotjam = slotJam.getSlot_jam();
+                slotjam= listSlot.get(position);
+                view.setSelected(true);
+
             }
 
             @Override
             public void onLongClick(View view, int position) {
-                SlotJam slotJam = listSlot.get(position);
-                slotjam = slotJam.getSlot_jam();
+                slotjam = listSlot.get(position);
             }
         }));
 
@@ -161,9 +172,8 @@ public class JadwalPemeriksaanFragment extends Fragment {
                 Jadwal_KeluhanFotoFragment keluhanFotoFragment = new Jadwal_KeluhanFotoFragment();
 
                 Bundle bundle = new Bundle();
-                bundle.putString(Jadwal_KeluhanFotoFragment.EXTRA_NAME, namaDokter);
-                bundle.putString(Jadwal_KeluhanFotoFragment.EXTRA_FOTO, fotoDokter);
-                bundle.putString(Jadwal_KeluhanFotoFragment.EXTRA_JAM, slotjam);
+                bundle.putParcelable(Jadwal_KeluhanFotoFragment.EXTRA_DOKTER, dokter);
+                bundle.putParcelable(Jadwal_KeluhanFotoFragment.EXTRA_JAM, slotjam);
                 bundle.putString(Jadwal_KeluhanFotoFragment.EXTRA_TANGGAL, tgl);
 
                 keluhanFotoFragment.setArguments(bundle);
@@ -181,25 +191,21 @@ public class JadwalPemeriksaanFragment extends Fragment {
 
     }
 
-    private ArrayList<SlotJam> getListSlot() {
-        String[] dataSlot = getResources().getStringArray(R.array.data_slot_jam);
-
-        ArrayList<SlotJam> listSlot = new ArrayList<>();
-
-        for (String s : dataSlot) {
-            SlotJam slotJam = new SlotJam();
-            slotJam.setSlot_jam(s);
-
-            listSlot.add(slotJam);
-        }
-
-        return  listSlot;
-    }
-
-    private void showRecyclerList() {
-        rv_dokter.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        ListDokterJadwalAdapter listDokterAdapter = new ListDokterJadwalAdapter(list);
-        rv_dokter.setAdapter(listDokterAdapter);
+    private void getListSlot() {
+        slotRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot data : queryDocumentSnapshots){
+                    final SlotJam slotJam = new SlotJam();
+                    slotJam.setSlot_jam(data.get("waktu").toString());
+                    listSlot.add(slotJam);
+                    Log.d("slotJam","Memasukkan slotjam ke listslot"+slotJam.getSlot_jam());
+                }
+                rv_slotjam.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+                ListSlotJamAdapter listSlotJamAdapter = new ListSlotJamAdapter(listSlot);
+                rv_slotjam.setAdapter(listSlotJamAdapter);
+            }
+        });
     }
 
     private void prepareCalendarData() {
@@ -217,19 +223,47 @@ public class JadwalPemeriksaanFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
     }
 
-    private ArrayList<Dokter> getListDokter() {
-        String[] dataNama = getResources().getStringArray(R.array.data_dokter_tersedia);
+//    private ArrayList<Dokter> getListDokter() {
+//        doktersRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//            @Override
+//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                for(QueryDocumentSnapshot data : queryDocumentSnapshots){
+//                    final Dokter dokter = new Dokter();
+//                    dokter.setId_dokter(Integer.valueOf(data.get("id_dokter").toString()));
+//                    dokter.setId_user(Integer.valueOf(data.get("id_user").toString()));
+//                    usersRef.whereEqualTo("id_user",dokter.getId_user()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                        @Override
+//                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                            dokter.setNama(queryDocumentSnapshots.getDocuments().get(0).get("nama").toString());
+//                        }
+//                    });
+//                    dokter.setFoto("foto_dokter");
+//                    list.add(dokter);
+//                }
+//            }
+//        });
+//        return list;
+//    }
 
-        ArrayList<Dokter> listDokter = new ArrayList<>();
-
-        for (String s : dataNama) {
-            Dokter dokter = new Dokter();
-            dokter.setNama(s);
-            dokter.setFoto("foto_dokter_2");
-
-            listDokter.add(dokter);
-        }
-
-        return  listDokter;
+    private ArrayList<Dokter> updateListDokter() {
+        doktersRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot data : queryDocumentSnapshots){
+                    final Dokter dokter = new Dokter();
+                    dokter.setId_dokter(Integer.valueOf(data.get("id_dokter").toString()));
+                    dokter.setId_user(Integer.valueOf(data.get("id_user").toString()));
+                    usersRef.whereEqualTo("id_user",dokter.getId_user()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            dokter.setNama(queryDocumentSnapshots.getDocuments().get(0).get("nama").toString());
+                        }
+                    });
+                    dokter.setFoto("foto_dokter");
+                    list.add(dokter);
+                }
+            }
+        });
+        return list;
     }
 }

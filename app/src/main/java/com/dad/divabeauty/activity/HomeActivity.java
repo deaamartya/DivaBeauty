@@ -22,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -32,9 +33,11 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private final ArrayList<Dokter> list = new ArrayList<>();
     private TextView nama_user;
+    private CollectionReference doktersRef;
     private CollectionReference usersRef;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private SharedPreferences settings;
+    private ArrayList<Dokter> listDokter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +48,6 @@ public class HomeActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyler_view_dokter);
         recyclerView.setHasFixedSize(true);
-
-        list.addAll(getListDokter());
-        showRecyclerList();
 
         CardView card_pemeriksaan = findViewById(R.id.card_pemeriksaan);
         card_pemeriksaan.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +100,9 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         usersRef = db.collection("user");
+        doktersRef = db.collection("dokter");
+//        list.addAll(getListDokter());
+//        showRecyclerList();
         nama_user = findViewById(R.id.txt_home_nama);
         Integer id_user = settings.getInt("id_user", 0);
         if(id_user != 0){
@@ -129,7 +132,6 @@ public class HomeActivity extends AppCompatActivity {
             });
         }
 
-
     }
 
     private void showRecyclerList() {
@@ -139,18 +141,25 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private ArrayList<Dokter> getListDokter() {
-        String[] dataNama = getResources().getStringArray(R.array.data_dokter);
-
-        ArrayList<Dokter> listDokter = new ArrayList<>();
-
-        for (String s : dataNama) {
-            Dokter dokter = new Dokter();
-            dokter.setNama(s);
-            dokter.setFoto("foto_dokter");
-
-            listDokter.add(dokter);
-        }
-
-        return  listDokter;
+        listDokter = new ArrayList<>();
+        doktersRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot data : queryDocumentSnapshots){
+                    final Dokter dokter = new Dokter();
+                    dokter.setId_dokter(Integer.valueOf(data.get("id_dokter").toString()));
+                    dokter.setId_user(Integer.valueOf(data.get("id_user").toString()));
+                    usersRef.whereEqualTo("id_user",dokter.getId_user()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            dokter.setNama(queryDocumentSnapshots.getDocuments().get(0).get("nama").toString());
+                        }
+                    });
+                    dokter.setFoto("foto_dokter");
+                    listDokter.add(dokter);
+                }
+            }
+        });
+        return listDokter;
     }
 }

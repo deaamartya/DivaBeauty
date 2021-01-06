@@ -6,6 +6,8 @@ import android.os.Parcelable;
 public class Dokter implements Parcelable {
     private String nama;
     private String foto;
+    private Integer id_user;
+    private Integer id_dokter;
 
     public String getNama() {
         return nama;
@@ -54,4 +56,20 @@ public class Dokter implements Parcelable {
             return new Dokter[size];
         }
     };
+
+    public Integer getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(Integer id_user) {
+        this.id_user = id_user;
+    }
+
+    public Integer getId_dokter() {
+        return id_dokter;
+    }
+
+    public void setId_dokter(Integer id_dokter) {
+        this.id_dokter = id_dokter;
+    }
 }

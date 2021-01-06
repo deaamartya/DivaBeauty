@@ -92,7 +92,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="@string/konsultasi_dengan_dokter"
-                            android:textSize="20dp"
+                            android:textSize="8pt"
                             android:textColor="@android:color/white"
                             />
                     </LinearLayout>
@@ -171,6 +171,7 @@
                             android:text="Riwayat Konsultasi"
                             android:textAppearance="?attr/textAppearanceHeadline6"
                             android:textColor="@android:color/black"
+                            android:textSize="8pt"
                             />
                     </LinearLayout>
                     <ImageView
