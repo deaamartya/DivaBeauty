@@ -18,11 +18,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dad.divabeauty.R;
+import com.dad.divabeauty.model.Dokter;
+import com.dad.divabeauty.model.SlotJam;
 
 public class Jadwal_KeluhanFotoFragment extends Fragment {
     public static String EXTRA_TANGGAL = "extra_name";
-    public static Parcelable EXTRA_DOKTER = "extra_description";
-    public static Parcelable EXTRA_JAM = "extra_jam";
+    public static Dokter EXTRA_DOKTER;
+    public static SlotJam EXTRA_SLOT;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,25 +36,26 @@ public class Jadwal_KeluhanFotoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        EXTRA_TANGGAL = getArguments().getString(EXTRA_TANGGAL);
-//        EXTRA_JAM = getArguments().getString(EXTRA_JAM);
-//        EXTRA_DOKTER = getArguments().getString(EXTRA_DOKTER);
-//        TextView tglJam = view.findViewById(R.id.jam_dan_tanggal_keluhan);
-//        TextView nama_dokter = view.findViewById(R.id.nama_dokter_keluhan);
-//        ImageView foto_dokter = view.findViewById(R.id.foto_dokter_keluhan);
-//
-//        Log.d("isi extra tglJam",EXTRA_JAM +" "+ EXTRA_TANGGAL);
-//
-//        tglJam.setText(new StringBuilder(EXTRA_TANGGAL+" "+EXTRA_JAM));
-//        nama_dokter.setText(EXTRA_NAME);
-//
-//        Glide.with(getView())
-//                .load(
-//                        getActivity().getResources().getIdentifier(EXTRA_FOTO, "drawable", getActivity().getPackageName())
-//                )
-//                .into(foto_dokter);
-//
-//        foto_dokter.setClipToOutline(true);
+        assert getArguments() != null;
+        EXTRA_TANGGAL = getArguments().getString("EXTRA_TANGGAL");
+        EXTRA_SLOT = getArguments().getParcelable("EXTRA_SLOT");
+        EXTRA_DOKTER = getArguments().getParcelable("EXTRA_DOKTER");
+        TextView tglJam = view.findViewById(R.id.jam_dan_tanggal_keluhan);
+        TextView nama_dokter = view.findViewById(R.id.nama_dokter_keluhan);
+        ImageView foto_dokter = view.findViewById(R.id.foto_dokter_keluhan);
+
+        Log.d("isi extra tglJam",EXTRA_SLOT.getSlot_jam() +" "+ EXTRA_TANGGAL);
+
+        tglJam.setText(new StringBuilder(EXTRA_TANGGAL+" "+EXTRA_SLOT.getId_slot_jam()));
+        nama_dokter.setText(EXTRA_DOKTER.getNama());
+
+        Glide.with(getView())
+                .load(
+                        getActivity().getResources().getIdentifier(EXTRA_DOKTER.getFoto(), "drawable", getActivity().getPackageName())
+                )
+                .into(foto_dokter);
+
+        foto_dokter.setClipToOutline(true);
 
         Button daftar = view.findViewById(R.id.btn_keluhan_daftar);
         daftar.setOnClickListener(new View.OnClickListener() {

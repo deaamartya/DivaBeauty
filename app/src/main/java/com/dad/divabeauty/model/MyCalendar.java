@@ -27,6 +27,37 @@ public class MyCalendar {
         return month_name;
 
     }
+
+    public int getHariInt(String day){
+        int id_hari = 0;
+        switch (day){
+            case "Mon":
+                id_hari = 1;
+                break;
+            case "Tue":
+                id_hari = 2;
+                break;
+            case "Wed":
+                id_hari = 3;
+                break;
+            case "Thu":
+                id_hari = 4;
+                break;
+            case "Fri":
+                id_hari = 5;
+                break;
+            case "Sat":
+                id_hari = 6;
+                break;
+            case "Sun":
+                id_hari = 7;
+                break;
+            default:
+                break;
+        }
+        return id_hari;
+    }
+
     public int getPos() {
         return pos;
     }
