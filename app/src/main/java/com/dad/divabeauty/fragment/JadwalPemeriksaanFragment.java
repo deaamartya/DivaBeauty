@@ -51,7 +51,6 @@ public class JadwalPemeriksaanFragment extends Fragment {
     private SlotJam slotjam = new SlotJam();
     private Dokter dokter = new Dokter();
     private Integer id_hari;
-    private CollectionReference slotRef;
     private CollectionReference doktersRef;
     private CollectionReference usersRef;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -73,7 +72,6 @@ public class JadwalPemeriksaanFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        slotRef = db.collection("slot");
         usersRef = db.collection("user");
         doktersRef = db.collection("dokter");
 
@@ -112,6 +110,9 @@ public class JadwalPemeriksaanFragment extends Fragment {
                 id_hari = calendar.getHariInt(calendar.getDay());
                 Log.d("hari ke", String.valueOf(id_hari));
                 updateListDokter();
+                if (id_hari != 0 && slotjam.getId_slot_jam() != 0 && dokter.getId_dokter() != 0) {
+                    pilih.setEnabled(true);
+                }
             }
 
             @Override
@@ -138,7 +139,9 @@ public class JadwalPemeriksaanFragment extends Fragment {
 
                 MaterialCardView childView = (MaterialCardView) rv_dokter.getChildAt(position);
                 childView.setChecked(true);
-                pilih.setEnabled(true);
+                if (id_hari != 0 && slotjam.getId_slot_jam() != 0) {
+                    pilih.setEnabled(true);
+                }
             }
 
             @Override
@@ -171,6 +174,9 @@ public class JadwalPemeriksaanFragment extends Fragment {
                 }
                 Log.d("slot ke", String.valueOf(slotjam.getId_slot_jam()));
                 updateListDokter();
+                if (id_hari != 0 && slotjam.getId_slot_jam() != 0) {
+                    pilih.setEnabled(true);
+                }
             }
         });
 

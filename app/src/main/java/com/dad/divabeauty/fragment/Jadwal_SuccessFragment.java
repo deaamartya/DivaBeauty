@@ -15,13 +15,19 @@ import android.widget.TextView;
 
 import com.dad.divabeauty.R;
 import com.dad.divabeauty.activity.HomeActivity;
+import com.dad.divabeauty.model.Dokter;
+import com.dad.divabeauty.model.SlotJam;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
 public class Jadwal_SuccessFragment extends Fragment {
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH.mm");
+    public static Integer id_pemeriksaan;
+    public static String waktu_dibuat;
+    public static Integer no_antrian;
+    public static String perkiraan_jam_periksa;
+
     public Jadwal_SuccessFragment() {
     }
 
@@ -40,11 +46,19 @@ public class Jadwal_SuccessFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Jakarta"));
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        waktu_dibuat = getArguments().getString("EXTRA_TIMESTAMP");
+        no_antrian = getArguments().getInt("EXTRA_NOANTRIAN");
+        perkiraan_jam_periksa = getArguments().getString("EXTRA_PERKIRAAN");
+
         TextView txt_timestamp = view.findViewById(R.id.timestamp_pembuatan);
-        String tglwaktuwib = "Antrian ini dibuat pada "+sdf.format(timestamp) + " WIB";
-        txt_timestamp.setText(tglwaktuwib);
+        txt_timestamp.setText(txt_timestamp.getText() + waktu_dibuat);
+
+        TextView txt_antrian = view.findViewById(R.id.nomor_antrian_success);
+        txt_antrian.setText(String.valueOf(no_antrian));
+
+        TextView txt_perkiraan = view.findViewById(R.id.perkiraan_jam_success);
+        txt_perkiraan.setText(perkiraan_jam_periksa);
+
         Button dashboard = view.findViewById(R.id.btn_success_back_to_home);
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override

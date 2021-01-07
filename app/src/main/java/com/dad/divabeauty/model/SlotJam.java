@@ -3,11 +3,30 @@ package com.dad.divabeauty.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class SlotJam implements Parcelable {
     private Integer id_slot_jam;
     private String slot_jam;
 
     public SlotJam(){}
+
+    public int getStartClock(){
+        if (id_slot_jam == 1){
+            return 8;
+        }
+        else if (id_slot_jam == 2){
+            return 13;
+        }
+        else if (id_slot_jam == 3){
+            return 18;
+        }
+        return 0;
+    }
 
     protected SlotJam(Parcel in) {
         if (in.readByte() == 0) {
