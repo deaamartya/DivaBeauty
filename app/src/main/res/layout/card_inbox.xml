@@ -1,31 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
-    android:elevation="0dp"
-    android:layout_margin="8dp"
-    app:strokeWidth="2dp">
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:layout_marginTop="8dp">
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/foto_dokter"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:id="@+id/foto_dokter_inbox"
+        android:background="@drawable/circle"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp">
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/register"
-            android:layout_marginEnd="16dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dr. Bumi Langit mengirim catatan untuk pemeriksaan 23/10/2020 09:35"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/txt_inbox"
-            android:textColor="@android:color/black"
-            android:maxLines="2"
-            />
-    </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+        android:text="Nama Dokter"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/nama_dokter_inbox"
+        android:textColor="@android:color/black"
+        android:maxLines="2"
+        android:fontFamily="@font/ttnorms_bold"
+        android:layout_toRightOf="@+id/foto_dokter_inbox"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="19:50"
+        android:layout_gravity="right"
+        android:id="@+id/waktu_pesan"
+        android:textColor="@android:color/black"
+        android:maxLines="2"
+        android:layout_toRightOf="@+id/nama_dokter_inbox"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Catatan Pemeriksaan"
+        android:id="@+id/jenis_inbox"
+        android:textColor="@android:color/black"
+        android:maxLines="2"
+        android:fontFamily="@font/ttnorms_regular"
+        android:layout_below="@id/nama_dokter_inbox"
+        android:layout_toRightOf="@id/foto_dokter_inbox"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum asfsafasfsafasfasfsafasfs"
+        android:id="@+id/isi_pesan_inbox"
+        android:textColor="@android:color/darker_gray"
+        android:maxLines="1"
+        android:fontFamily="@font/ttnorms_regular"
+        android:layout_below="@id/jenis_inbox"
+        android:layout_toRightOf="@id/foto_dokter_inbox"
+        />
+    <View android:id="@+id/tile_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="16dp"
+        android:background="?android:attr/dividerVertical"
+        android:layout_below="@id/isi_pesan_inbox"/>
+</RelativeLayout>

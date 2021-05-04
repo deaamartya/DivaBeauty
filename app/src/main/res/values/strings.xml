@@ -19,7 +19,7 @@
     <string name="riwayat_kesehatan">Riwayat Kesehatan</string>
     <string name="konfirmasi_password">Konfirmasi Password</string>
     <string name="jadwalkan">Jadwalkan</string>
-    <string name="pemeriksaan_dengan_dokter">Pemeriksaan dengan Dokter</string>
+    <string name="pemeriksaan_dengan_dokter">Konsultasi dengan Dokter</string>
     <string name="dokter_tersedia">Dokter Tersedia</string>
     <string name="title_activity_detail_riwayat">ScrollingActivity</string>
     <string name="large_text">

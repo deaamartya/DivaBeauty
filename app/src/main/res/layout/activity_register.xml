@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
+    tools:context=".activity.RegisterActivity"
     >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -44,7 +44,8 @@
             android:hint="@string/full_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_register">
+            app:layout_constraintTop_toBottomOf="@+id/text_register"
+            app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -79,15 +80,39 @@
                 </LinearLayout>
             </RadioGroup>
 
-
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/register_input_email"
+            android:id="@+id/register_input_tgl_lahir"
             app:layout_constraintTop_toBottomOf="@+id/radio_jenis_kelamin"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Tanggal Lahir"
+            android:layout_marginTop="16dp"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            app:layout_constraintTop_toBottomOf="@+id/register_input_tgl_lahir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilih Tanggal Lahir"
+            android:id="@+id/button_tgl_lahir"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_input_email"
+            app:layout_constraintTop_toBottomOf="@+id/button_tgl_lahir"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="@string/email"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -102,7 +127,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/phone_number"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -117,7 +143,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/identity_number_nik"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -132,7 +159,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/no_kk"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -147,7 +175,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/riwayat_kesehatan"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -163,7 +192,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/username"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+            app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -181,7 +211,8 @@
         android:layout_marginTop="16dp"
         app:endIconMode="password_toggle"
         app:helperTextEnabled="true"
-        app:helperText="@string/min_password_str">
+        app:helperText="@string/min_password_str"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -199,7 +230,8 @@
             android:layout_marginTop="16dp"
             app:endIconMode="password_toggle"
             app:helperTextEnabled="true"
-            app:helperText="@string/min_password_str">
+            app:helperText="@string/min_password_str"
+            app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

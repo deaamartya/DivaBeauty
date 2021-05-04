@@ -13,11 +13,11 @@
     <item
         android:id="@+id/page_3"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_inbox_24"
+        android:icon="@drawable/inbox"
         android:title="Pesan Masuk"/>
     <item
         android:id="@+id/page_4"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="Pengaturan"/>
+        android:icon="@drawable/user"
+        android:title="Akun"/>
 </menu>
